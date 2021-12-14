@@ -9,21 +9,25 @@ h1{
     margin-top: 0.4rem;
     margin-bottom: 0.6rem;
 }
+.pokedex-complete{
+    display: flex;
+    flex-wrap: wrap;
+}
 
-#pokemon-singlecard {
+.pokemon-singlecard {
     position: relative;
     display: flex;
     align-items: center;
     flex-direction: column;
     background-color: rgb(177, 31, 31);
-    color: white;
+    color: black;
     height: 15rem;
     width: 15rem;
     border-radius: 2rem;
     margin: 1rem;
 }
 
-#pokemonImg {
+.pokemonImg {
     position: absolute;
     bottom: -2rem;
     height: 11rem;
@@ -44,6 +48,33 @@ h1{
 }
 .d-none{
     display: none;
+}
+.grass{
+    background-color: green;
+}
+.fire{
+    background-color: red;
+}
+.water{
+    background-color: blue;
+}
+.bug{
+    background-color: lime;
+}
+.normal{
+    background-color: lightgray;
+}
+.poison{
+    background-color: darkgreen;
+}
+.electric{
+    background-color: yellow;
+}
+.ground{
+    background-color: brown;
+}
+.fairy{
+    background-color: pink;
 }
 
 @media (max-width: 900px) {
