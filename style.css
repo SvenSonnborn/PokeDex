@@ -45,6 +45,7 @@ h1{
     padding-right: 0.8rem;
     padding-top: 0.4rem;
     padding-bottom: 0.4rem;
+    font-weight: bold;
 }
 .d-none{
     display: none;
@@ -56,7 +57,7 @@ h1{
     background-color: red;
 }
 .water{
-    background-color: blue;
+    background-color: rgb(58, 58, 241);
 }
 .bug{
     background-color: lime;
@@ -76,9 +77,19 @@ h1{
 .fairy{
     background-color: pink;
 }
+.pokemon-singlecard:hover{
+    transform: scale(1.2);
+    cursor: pointer;
+    z-index: 1;
+}
 
 @media (max-width: 900px) {
     :root {
         font-size: 12px !important;
+    }
+}
+@media (max-width: 600px) {
+    :root {
+        font-size: 10px !important;
     }
 }
