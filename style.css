@@ -1,0 +1,10 @@
+body{
+    margin: 0;
+}
+#pokedex{
+    display: flex;
+    font-family: 'Readex Pro', sans-serif;
+    min-height: 50vh;
+    background-color: rgb(177, 31, 31);
+    color: white;
+}
