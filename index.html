@@ -11,11 +11,23 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@200;300;400;500;600;700&display=swap"
         rel="stylesheet">
-        <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
     <title>Pokedex</title>
 </head>
 
 <body onload="loadPokemon()">
+    <nav class="navbar navbar-light bg-light">
+        <div class="container-fluid">
+            <span class="navbar-brand mb-0 h1">Pokedex</span>
+            <div id="colorchange">
+                <a class="navbar-brand" onclick="changeToShiny()">Change to shiny</a>
+            </div>
+            <form class="d-flex">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"  id="search">
+                <button class="btn btn-outline-success" type="submit" onclick="filterNames()">Search</button>
+            </form>
+        </div>
+    </nav>
     <div class="pokedex-complete" id="pokedex-complete">
 
     </div>
