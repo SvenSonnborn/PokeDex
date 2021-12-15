@@ -124,6 +124,8 @@ function rendercard(number) {
         <img id="pokemonImg${number}Detailed" class="DetailedImg">
     `;
     addProgressBar(number);
+    classcolor = document.getElementById(`type1${number}`).innerHTML;
+    document.getElementById(`top`).classList.add(`${classcolor}`);
 }
 function addMiddlePart(number) {
     document.getElementById('middlepart').innerHTML = `
