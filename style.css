@@ -82,14 +82,74 @@ h1{
     cursor: pointer;
     z-index: 1;
 }
+.detailed{
+    position: fixed;
+    top: 2vh;
+    right: 1rem;
+    z-index: 2;
+    width: 40vw;
+    min-width: 20rem;
+    height: 96vh;
+    background-color: rgb(13, 201, 226);
+    max-width: 30rem;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 1rem;
+}
+.middlepart{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+    align-items: center;
+    margin-left: 2rem;
+    margin-right: 2rem;
+}
+.DetailedImg{
+    width: 10rem;
+    position: absolute;
+    top: 11rem;
+    z-index: 3;
+}
+.bottom{
+    position: absolute;
+    bottom: 0;
+    background-color: blueviolet;
+    height: 50%;
+    padding-top: 4rem;
+    width: 100%;
+    border-top-left-radius: 3rem;
+    border-top-right-radius: 3rem;
+    border-bottom-left-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+}
+.top{
+    width: 100%;
+}
+.navbar{
+    display: flex;
+    justify-content: space-between;
+    margin-left: 2rem;
+    margin-right: 2rem;
+    margin-top: 1rem;
+}
 
 @media (max-width: 900px) {
     :root {
         font-size: 12px !important;
     }
+    .detailed{
+        width: 60vw;
+    }
 }
 @media (max-width: 600px) {
     :root {
         font-size: 10px !important;
+    }
+    .detailed{
+        width: 100vw;
+        right: 0;
+        height: 100vh;
+        top: 0;
     }
 }
