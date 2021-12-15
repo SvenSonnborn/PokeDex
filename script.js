@@ -78,8 +78,12 @@ function addcontainer(id) {
 function back() {
     nodetails = false;
     document.getElementById('detailed').classList.add('d-none');
+    removeImg();
 }
-
+function removeImg() {
+    let detailed = document.getElementById('detailed');
+    detailed.removeChild(detailed.lastElementChild);
+  }
 
 async function detailed(number) {
     if (nodetails === false) {
@@ -87,13 +91,16 @@ async function detailed(number) {
         response = await fetch(url);
         currentPokemon = await response.json();
         rendercard(number);
-        document.getElementById(`pokemonNameDetailed${number}`).innerHTML = currentPokemon['name'];
-        document.getElementById(`pokemonImg${number}Detailed`).src = currentPokemon['sprites']['other']['official-artwork']['front_default'];
-        document.getElementById(`type1${number}Detailed`).innerHTML = currentPokemon['types'][0]['type']['name'];
+        renderDetailedInfo(number);
         numbersizeDetailed(number)
         showSecondType(number)
         nodetails = true;
     }
+}
+function renderDetailedInfo(number){
+    document.getElementById(`pokemonNameDetailed${number}`).innerHTML = currentPokemon['name'];
+    document.getElementById(`pokemonImg${number}Detailed`).src = currentPokemon['sprites']['other']['official-artwork']['front_default'];
+    document.getElementById(`type1${number}Detailed`).innerHTML = currentPokemon['types'][0]['type']['name'];
 }
 function showSecondType(number) {
     if (currentPokemon['types'].length > 1) {
@@ -132,8 +139,6 @@ function addMiddlePart(number) {
         </span>
     `;
 }
-
-
 function addProgressBar(number) {
     getHpValue();
     getAtkValue();
