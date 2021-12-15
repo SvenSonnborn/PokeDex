@@ -1,9 +1,3 @@
-let currentPokemon;
-let pokemonnumber = 1;
-let id;
-let classcolor;
-let nodetails = false;
-
 async function loadPokemon() {
     for (let i = 1; i < 50; i++) {
         id = i;
@@ -15,12 +9,6 @@ async function loadPokemon() {
         background(id);
         pokemonnumber++;
     }
-}
-function renderPokemonInfo(id) {
-    document.getElementById(`pokemonName${id}`).innerHTML = currentPokemon['name'];
-    document.getElementById(`pokemonImg${id}`).src = currentPokemon['sprites']['other']['official-artwork']['front_default'];
-    document.getElementById(`type1${id}`).innerHTML = currentPokemon['types'][0]['type']['name'];
-    type2(id);
 }
 async function changeToShiny() {
     pokemonnumber = 1
@@ -44,6 +32,18 @@ async function changeToNormal() {
         pokemonnumber++;
     }
 }
+async function detailed(number) {
+    if (nodetails === false) {
+        url = `https://pokeapi.co/api/v2/pokemon/${number}`;
+        response = await fetch(url);
+        currentPokemon = await response.json();
+        rendercard(number);
+        renderDetailedInfo(number);
+        numbersizeDetailed(number)
+        showSecondType(number)
+        nodetails = true;
+    }
+}
 function changeImgShiny(id) {
     document.getElementById(`pokemonImg${id}`).src = currentPokemon['sprites']['front_shiny'];
     document.getElementById('colorchange').innerHTML = `<a class="navbar-brand" onclick="changeToNormal()">Change to normal</a>`;
@@ -52,16 +52,17 @@ function changeImgNormal(id) {
     document.getElementById(`pokemonImg${id}`).src = currentPokemon['sprites']['other']['official-artwork']['front_default'];
     document.getElementById('colorchange').innerHTML = `<a class="navbar-brand" onclick="changeToShiny()">Change to shiny</a>`;
 }
-
+function renderPokemonInfo(id) {
+    document.getElementById(`pokemonName${id}`).innerHTML = currentPokemon['name'];
+    document.getElementById(`pokemonImg${id}`).src = currentPokemon['sprites']['other']['official-artwork']['front_default'];
+    document.getElementById(`type1${id}`).innerHTML = currentPokemon['types'][0]['type']['name'];
+    type2(id);
+}
 function type2(id) {
     if (currentPokemon['types'].length > 1) {
         document.getElementById(`type2${id}`).classList.remove('d-none');
         document.getElementById(`type2${id}`).innerHTML = currentPokemon['types'][1]['type']['name'];
     }
-}
-function background(id) {
-    classcolor = document.getElementById(`type1${id}`).innerHTML;
-    document.getElementById(`pokemon-singlecard${id}`).classList.add(`${classcolor}`);
 }
 function addcontainer(id) {
     document.getElementById('pokedex-complete').innerHTML += `
@@ -84,19 +85,6 @@ function back(number) {
 function removeImg() {
     let detailed = document.getElementById('detailed');
     detailed.removeChild(detailed.lastElementChild);
-  }
-
-async function detailed(number) {
-    if (nodetails === false) {
-        url = `https://pokeapi.co/api/v2/pokemon/${number}`;
-        response = await fetch(url);
-        currentPokemon = await response.json();
-        rendercard(number);
-        renderDetailedInfo(number);
-        numbersizeDetailed(number)
-        showSecondType(number)
-        nodetails = true;
-    }
 }
 function renderDetailedInfo(number){
     document.getElementById(`pokemonNameDetailed${number}`).innerHTML = currentPokemon['name'];
@@ -150,30 +138,6 @@ function addProgressBar(number) {
     getspDefValue();
     getSpeedValue();
 }
-function getHpValue() {
-    let hp = currentPokemon['stats'][0]['base_stat'];
-    document.getElementById('hp').style = `width: ${hp}%`;
-}
-function getAtkValue() {
-    let atk = currentPokemon['stats'][1]['base_stat'];
-    document.getElementById('atk').style = `width: ${atk}%`;
-}
-function getDefValue() {
-    let def = currentPokemon['stats'][2]['base_stat'];
-    document.getElementById('def').style = `width: ${def}%`;
-}
-function getSpAtkValue() {
-    let spAtk = currentPokemon['stats'][3]['base_stat'];
-    document.getElementById('sp-atk').style = `width: ${spAtk}%`;
-}
-function getspDefValue() {
-    let spDef = currentPokemon['stats'][4]['base_stat'];
-    document.getElementById('sp-def').style = `width: ${spDef}%`;
-}
-function getSpeedValue() {
-    let speed = currentPokemon['stats'][5]['base_stat'];
-    document.getElementById('speed').style = `width: ${speed}%`;
-}
 function filterNames() {
     //    let search = document.getElementById('search').value;
     //    search = search.toLowerCase();
@@ -183,4 +147,7 @@ function filterNames() {
     //        let         
     //    }
     window.alert("Work in Progress");
+}
+function favorite(){
+    window.alert("work in Progress");
 }
