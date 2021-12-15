@@ -11,7 +11,6 @@ async function loadPokemon() {
         let response = await fetch(url);
         currentPokemon = await response.json();
         addcontainer(id);
-        //        console.log('loaded pokemon', currentPokemon);
         renderPokemonInfo(id);
         background(id);
         pokemonnumber++;
@@ -45,11 +44,11 @@ async function changeToNormal() {
         pokemonnumber++;
     }
 }
-function changeImgShiny(id){
+function changeImgShiny(id) {
     document.getElementById(`pokemonImg${id}`).src = currentPokemon['sprites']['front_shiny'];
     document.getElementById('colorchange').innerHTML = `<a class="navbar-brand" onclick="changeToNormal()">Change to normal</a>`;
 }
-function changeImgNormal(id){
+function changeImgNormal(id) {
     document.getElementById(`pokemonImg${id}`).src = currentPokemon['sprites']['other']['official-artwork']['front_default'];
     document.getElementById('colorchange').innerHTML = `<a class="navbar-brand" onclick="changeToShiny()">Change to shiny</a>`;
 }
@@ -67,31 +66,34 @@ function background(id) {
 function addcontainer(id) {
     document.getElementById('pokedex-complete').innerHTML += `
     <div id="pokemon-singlecard${id}" class="pokemon-singlecard" onclick="detailed(${id})">
-    <h1 id="pokemonName${id}">Name</h1>
-    <div class="types">
-        <span id="type1${id}" class="type-single">Type1</span>
-        <span id="type2${id}" class="type-single d-none">Type2</span>
+        <h1 id="pokemonName${id}">Name</h1>
+        <div class="types">
+            <span id="type1${id}" class="type-single">Type1</span>
+            <span id="type2${id}" class="type-single d-none">Type2</span>
+        </div>
+        <img id="pokemonImg${id}" class="pokemonImg">
     </div>
-    <img id="pokemonImg${id}" class="pokemonImg">
-</div>
     `;
 }
 function back() {
     nodetails = false;
+    document.getElementById('detailed').classList.add('d-none');
 }
 
 
 async function detailed(number) {
-
-    url = `https://pokeapi.co/api/v2/pokemon/${number}`;
-    response = await fetch(url);
-    currentPokemon = await response.json();
-    rendercard(number);
-    document.getElementById(`pokemonNameDetailed${number}`).innerHTML = currentPokemon['name'];
-    document.getElementById(`pokemonImg${number}Detailed`).src = currentPokemon['sprites']['other']['official-artwork']['front_default'];
-    document.getElementById(`type1${number}Detailed`).innerHTML = currentPokemon['types'][0]['type']['name'];
-    numbersizeDetailed(number)
-    showSecondType(number)
+    if (nodetails === false) {
+        url = `https://pokeapi.co/api/v2/pokemon/${number}`;
+        response = await fetch(url);
+        currentPokemon = await response.json();
+        rendercard(number);
+        document.getElementById(`pokemonNameDetailed${number}`).innerHTML = currentPokemon['name'];
+        document.getElementById(`pokemonImg${number}Detailed`).src = currentPokemon['sprites']['other']['official-artwork']['front_default'];
+        document.getElementById(`type1${number}Detailed`).innerHTML = currentPokemon['types'][0]['type']['name'];
+        numbersizeDetailed(number)
+        showSecondType(number)
+        nodetails = true;
+    }
 }
 function showSecondType(number) {
     if (currentPokemon['types'].length > 1) {
@@ -109,80 +111,30 @@ function numbersizeDetailed(number) {
     }
 }
 function rendercard(number) {
-    if (nodetails === false) {
-        document.getElementById(`pokedex-complete`).innerHTML += `
-        <div class="detailed" id="detailed">
-            <div class="top">
-                <nav class="navbar">
-                    <img src="./img/back.png" onclick="back()">
-                    <img src="./img/favoriteAdd.png" onclick="favorite()">
-                </nav>
-                <div class="middlepart">
-                    <div class="smallInfo" id="smallInfo">
-                        <h2 id="pokemonNameDetailed${number}"> Name </h2>
-                        <div class="typeDetailed" id="typedetailed${number}">
-                            <span id="type1${number}Detailed" class="type-single">Type1</span>
-                            <span id="type2${number}Detailed" class="type-single d-none">Type2</span>
-                        </div>
-                    </div>
-                    <span id="pokemonNumberDetailed${number}" class="numberDetailed">
-                        Testnumber
-                    </span>
-                </div>
-            </div>
-            <img id="pokemonImg${number}Detailed" class="DetailedImg">
-            <div class="bottom" id="bottomCard">
-
+    document.getElementById('detailed').classList.remove('d-none');
+    addMiddlePart(number);
+    document.getElementById('detailed').innerHTML += `
+        <img id="pokemonImg${number}Detailed" class="DetailedImg">
+    `;
+    addProgressBar(number);
+}
+function addMiddlePart(number) {
+    document.getElementById('middlepart').innerHTML = `
+        <div class="smallInfo" id="smallInfo">
+            <h2 id="pokemonNameDetailed${number}"> Name </h2>
+            <div class="typeDetailed" id="typedetailed${number}">
+                <span id="type1${number}Detailed" class="type-single">Type1</span>
+                <span id="type2${number}Detailed" class="type-single d-none">Type2</span>
             </div>
         </div>
-        `;
-        addProgressBar(number);
-    }
+        <span id="pokemonNumberDetailed${number}" class="numberDetailed">
+        Testnumber
+        </span>
+    `;
 }
+
 
 function addProgressBar(number) {
-    document.getElementById('bottomCard').innerHTML = `
-    <h2 class="statText"> Stats </h2>
-    <div class="firstLine">
-        <p>HP</p>
-        <div class="progress">
-            <div class="progress-bar progress-bar-striped" role="progressbar" style="width: 10%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100" id="hp"></div>
-        </div>
-    </div>
-    <div class="firstLine">
-        <p>ATK</p>
-        <div class="progress">
-            <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" id="atk"></div>
-        </div>
-    </div>
-    <div class="firstLine">
-        <p>DEF</p>
-        <div class="progress">
-            <div class="progress-bar progress-bar-striped bg-info" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" id="def"></div>
-        </div>
-    </div>
-    <div class="firstLine">
-        <p>SP-ATK</p>
-        <div class="progress">
-            <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" id="sp-atk"></div>
-        </div>
-    </div>
-    <div class="firstLine">
-        <p>SP-DEF</p>
-        <div class="progress">
-            <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" id="sp-def"></div>
-        </div>
-    </div>
-    <div class="firstLine">
-        <p>SPEED</p>
-        <div class="progress">
-            <div class="progress-bar progress-bar-striped bg-secondary" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" id="speed"></div>
-        </div>
-    </div>
-    `;
-    progressBarNumbers();
-}
-function progressBarNumbers() {
     getHpValue();
     getAtkValue();
     getDefValue();
@@ -214,13 +166,13 @@ function getSpeedValue() {
     let speed = currentPokemon['stats'][5]['base_stat'];
     document.getElementById('speed').style = `width: ${speed}%`;
 }
-function filterNames(){
-    let search = document.getElementById('search').value;
-    search = search.toLowerCase();
-    let complete = document.getElementById('pokedex-complete');
-    complete.innerHTML = '';
-    for (let index = 0; index < 50; index++) {
-        let 
-        
-    }
+function filterNames() {
+    //    let search = document.getElementById('search').value;
+    //    search = search.toLowerCase();
+    //    let complete = document.getElementById('pokedex-complete');
+    //    complete.innerHTML = '';
+    //    for (let index = 0; index < 50; index++) {
+    //        let         
+    //    }
+    window.alert("Work in Progress");
 }

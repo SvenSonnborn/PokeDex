@@ -23,13 +23,68 @@
                 <a class="navbar-brand" onclick="changeToShiny()">Change to shiny</a>
             </div>
             <form class="d-flex">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"  id="search">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="search">
                 <button class="btn btn-outline-success" type="submit" onclick="filterNames()">Search</button>
             </form>
         </div>
     </nav>
     <div class="pokedex-complete" id="pokedex-complete">
-
+        <div class="detailed d-none" id="detailed">
+            <div class="top">
+                <nav class="navbar">
+                    <img src="./img/back.png" onclick="back()" class="back">
+                    <img src="./img/favoriteAdd.png" onclick="favorite()" class="favorite">
+                </nav>
+                <div class="middlepart" id="middlepart">
+                </div>
+            </div>
+            <div class="bottom" id="bottomCard">
+                <h2 class="statText"> Stats </h2>
+                <div class="firstLine">
+                    <p>HP</p>
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-striped" role="progressbar" style="width: 10%"
+                            aria-valuenow="10" aria-valuemin="0" aria-valuemax="100" id="hp"></div>
+                    </div>
+                </div>
+                <div class="firstLine">
+                    <p>ATK</p>
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 25%"
+                            aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" id="atk"></div>
+                    </div>
+                </div>
+                <div class="firstLine">
+                    <p>DEF</p>
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-striped bg-info" role="progressbar" style="width: 50%"
+                            aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" id="def"></div>
+                    </div>
+                </div>
+                <div class="firstLine">
+                    <p>SP-ATK</p>
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" style="width: 75%"
+                            aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" id="sp-atk"></div>
+                    </div>
+                </div>
+                <div class="firstLine">
+                    <p>SP-DEF</p>
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width: 100%"
+                            aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" id="sp-def"></div>
+                    </div>
+                </div>
+                <div class="firstLine">
+                    <p>SPEED</p>
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-striped bg-secondary" role="progressbar"
+                            style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" id="speed">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </body>
 

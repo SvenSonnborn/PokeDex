@@ -128,6 +128,16 @@ a:hover{
     top: 11rem;
     z-index: 3;
 }
+.back:hover{
+    cursor: pointer;
+    transform: scale(1.1);
+    border: solid 1px brown;
+}
+.favorite:hover{
+    cursor: pointer;
+    transform: scale(1.1);
+    border: solid 1px brown;
+}
 .bottom{
     position: absolute;
     bottom: 0;
