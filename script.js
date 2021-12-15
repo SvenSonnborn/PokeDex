@@ -75,10 +75,11 @@ function addcontainer(id) {
     </div>
     `;
 }
-function back() {
+function back(number) {
     nodetails = false;
     document.getElementById('detailed').classList.add('d-none');
     removeImg();
+    document.getElementById(`top`).classList.remove(`${classcolor}`);
 }
 function removeImg() {
     let detailed = document.getElementById('detailed');

@@ -12,6 +12,7 @@ h1{
 .pokedex-complete{
     display: flex;
     flex-wrap: wrap;
+    margin-top: 3.5rem;
 }
 
 .pokemon-singlecard {
@@ -169,6 +170,10 @@ a:hover{
     margin-left: 2rem;
     margin-right: 2rem;
     margin-top: 1rem;
+    position: fixed !important;
+    top: 0 !important;
+    width: 85%;
+    z-index: 2;
 }
 
 @media (max-width: 900px) {
