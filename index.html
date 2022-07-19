@@ -16,25 +16,33 @@
     <title>Pokedex</title>
 </head>
 
-<body onload="loadPokemon()">
-    <nav class="navbar navbar-light bg-light">
+<body onload="loadPokemon()" id="body">
+    <nav class="navbar pokeheader navbar-light">
         <div class="container-fluid">
-            <span class="navbar-brand mb-0 h1">Pokedex</span>
-            <div id="colorchange">
-                <a class="navbar-brand" onclick="changeToShiny()">Change to shiny</a>
+            <div class="nav-width">
+                <span class="navbar-brand mb-0 h1 nav-padding" id='nav1'>Pokedex</span>
+                <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names..">
+                <div>
+                    <div id="colorchange" class="nav-padding">
+                        <a class="navbar-brand" onclick="changeToShiny()" id='nav2'>Change to shiny</a>
+                    </div>
+                    <div class="darkmode nav-padding" id="darkmodeMenu">
+                        <p id="darkmode" onclick="darkmodeOn()">Change to darkmode</p>
+                    </div>
+                </div>
             </div>
-            <form class="d-flex">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="search">
-                <button class="btn btn-outline-success" type="submit" onclick="filterNames()">Search</button>
-            </form>
         </div>
     </nav>
+    <div class="pagedirection marg-top">
+        <img src="img/arrow_left_black.png" id="arrow-left" onclick="lowerpage()" class="hide">
+        <p id="page"></p>
+        <img src="img/arrow_right_black.png" id="arrow-right" onclick="addpage()">
+    </div>
     <div class="pokedex-complete" id="pokedex-complete">
         <div class="detailed d-none" id="detailed">
             <div class="top" id="top">
-                <nav class="navbar">
+                <nav class="navbar detailedNav">
                     <img src="./img/back.png" onclick="back(id)" class="back">
-                    <img src="./img/favoriteAdd.png" onclick="favorite()" class="favorite">
                 </nav>
                 <div class="middlepart" id="middlepart">
                 </div>
@@ -42,42 +50,42 @@
             <div class="bottom" id="bottomCard">
                 <h2 class="statText"> Stats </h2>
                 <div class="firstLine">
-                    <p>HP</p>
+                    <p id="hpText" class="barText">HP</p>
                     <div class="progress">
                         <div class="progress-bar progress-bar-striped" role="progressbar" style="width: 10%"
                             aria-valuenow="10" aria-valuemin="0" aria-valuemax="100" id="hp"></div>
                     </div>
                 </div>
                 <div class="firstLine">
-                    <p>ATK</p>
+                    <p id="atkText" class="barText">ATK</p>
                     <div class="progress">
                         <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 25%"
                             aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" id="atk"></div>
                     </div>
                 </div>
                 <div class="firstLine">
-                    <p>DEF</p>
+                    <p id="defText" class="barText">DEF</p>
                     <div class="progress">
                         <div class="progress-bar progress-bar-striped bg-info" role="progressbar" style="width: 50%"
                             aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" id="def"></div>
                     </div>
                 </div>
                 <div class="firstLine">
-                    <p>SP-ATK</p>
+                    <p id="spAtkText" class="barText">SP-ATK</p>
                     <div class="progress">
                         <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" style="width: 75%"
                             aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" id="sp-atk"></div>
                     </div>
                 </div>
                 <div class="firstLine">
-                    <p>SP-DEF</p>
+                    <p id="spDefText" class="barText">SP-DEF</p>
                     <div class="progress">
                         <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width: 100%"
                             aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" id="sp-def"></div>
                     </div>
                 </div>
                 <div class="firstLine">
-                    <p>SPEED</p>
+                    <p id="speedText" class="barText">SPEED</p>
                     <div class="progress">
                         <div class="progress-bar progress-bar-striped bg-secondary" role="progressbar"
                             style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" id="speed">
@@ -86,6 +94,12 @@
                 </div>
             </div>
         </div>
+        <div class="pokedex-complete" id="pokedex-window"></div>
+    </div>
+    <div class="pagedirection">
+        <img src="img/arrow_left_black.png" id="arrow-left" onclick="lowerpage()" class="hide">
+        <p id="page"></p>
+        <img src="img/arrow_right_black.png" id="arrow-right" onclick="addpage()">
     </div>
 </body>
 
